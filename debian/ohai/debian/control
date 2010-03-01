@@ -1,16 +1,18 @@
 Source: ohai
 Section: ruby
 Priority: extra
-Maintainer: Joshua Timberman <joshua@opscode.com>
-Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
-Build-Depends: cdbs, debhelper (>= 7), ruby-pkg-tools (>= 0.14)
-Build-Depends-Indep: ruby1.8
+Maintainer: Bryan McLellan <btm@loftninjas.org>
+Uploaders: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>, Joshua Timberman <joshua@opscode.com>
+Build-Depends: cdbs, debhelper (>= 7), ruby-pkg-tools (>= 0.14), quilt
+Build-Depends-Indep: graphviz, ruby1.8
 Standards-Version: 3.8.3
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-ruby-extras/trunk/ohai/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-ruby-extras/trunk/ohai/
 Homepage: http://github.com/opscode/ohai/tree/master
 
 Package: ohai
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8, libohai-ruby1.8
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8, libohai-ruby1.8 ( = ${source:Version} )
 Suggests: ohai-doc
 Description: Detects data about your operating system and reports it in JSON
  Information about your system is collected and returned as multidimensional
@@ -24,7 +26,7 @@ Description: Detects data about your operating system and reports it in JSON
 Package: libohai-ruby
 Architecture: all
 Depends: ${misc:Depends}, libohai-ruby1.8 ( = ${source:Version} )
-Suggests: ohai-doc
+Suggests: ohai, ohai-doc
 Description: Library to collect data about your operating system and report it in JSON
  Information about your system is collected and returned as multidimensional
  attributes in JSON format. The following information is captured:
@@ -40,7 +42,9 @@ Description: Library to collect data about your operating system and report it i
 
 Package: libohai-ruby1.8
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8, libextlib-ruby1.8, libjson-ruby1.8, libsystemu-ruby1.8, libmixlib-config-ruby, libmixlib-log-ruby, libmixlib-cli-ruby
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby1.8, libextlib-ruby1.8, 
+  libjson-ruby1.8, libsystemu-ruby1.8, libmixlib-cli-ruby1.8 (>= 1.1.0),
+  libmixlib-config-ruby1.8 (>= 1.1.0), libmixlib-log-ruby1.8 (>= 1.1.0)
 Suggests: libvirt-ruby1.8, libhpricot-ruby1.8, ohai-doc
 Description: Ruby 1.8 library to collect data about your operating system
  Information about your system is collected and returned as multidimensional
